@@ -1,1 +1,1 @@
-# parallel-distributed-systems
+# Parallel and Distributed Systems
