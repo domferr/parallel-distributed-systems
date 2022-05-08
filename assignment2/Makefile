@@ -20,7 +20,7 @@ $(OBJDIR)/%.o: %.cpp %.h
 $(OBJDIR)/%.o: %.cpp
 	$(CC) $(CFLAGS) $(INCLUDES) -c -o $@ $<
 
-assignment2.out: $(OBJDIR)/assignment2.o $(OBJDIR)/map.o ../utils/utimer/out/utimer.o ../utils/logger/logger.h
+assignment2.out: $(OBJDIR)/assignment2.o $(OBJDIR)/map.o ../utils/utimer/obj/utimer.o ../utils/logger/logger.h
 	$(CC) $(CFLAGS) $(INCLUDES) -o $@ $^ $(LDFLAGS) $(LIBS)
 
 clean:
