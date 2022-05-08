@@ -1,17 +1,17 @@
 CC = g++
 CFLAGS = -O3 -Wall -g
-OUTDIR = out
+OBJDIR = obj
 
 .PHONY: clean
 
-$(OUTDIR):
-	mkdir ./$(OUTDIR)
+$(OBJDIR):
+	mkdir ./$(OBJDIR)
 
-utimer: $(OUTDIR) ./$(OUTDIR)/utimer.o
+utimer: $(OBJDIR) $(OBJDIR)/utimer.o
 	@printf ""
 
-./$(OUTDIR)/utimer.o: utimer.cpp utimer.h
-	$(CC) $(CFLAGS) -c utimer.cpp -o ./$(OUTDIR)/utimer.o
+$(OBJDIR)/utimer.o: utimer.cpp utimer.h
+	$(CC) $(CFLAGS) -c utimer.cpp -o $(OBJDIR)/utimer.o
 
 clean:
-	rm -f ./$(OUTDIR)/*.o
+	rm -f ./$(OBJDIR)/*.o
