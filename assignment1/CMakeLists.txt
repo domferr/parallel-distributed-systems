@@ -1,0 +1,1 @@
+add_executable(assignment1.cpp ../utils/utimer/utimer.cpp ../utils/utimer/utimer.h)
