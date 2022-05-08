@@ -10,12 +10,15 @@
 #include "../utils/utimer/utimer.h"
 
 #define VECTOR_SIZE 64
-#define ACTIVE_WAIT_MS 2000
 
-void active_wait(long ms) {
+using namespace std::literals::chrono_literals;
+#define ACTIVE_WAIT_MS 2000ms
+
+void active_wait(std::chrono::milliseconds ms) {
+    long milli = ms.count();
     auto start_ms = std::chrono::system_clock::now();
     long elapsed = 0;
-    while(elapsed < ms) {
+    while(elapsed < milli) {
         elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(
                 std::chrono::system_clock::now() - start_ms).count();
     }
@@ -57,7 +60,7 @@ int main(int argc, char* argv[]) {
     std::cout << "Random vector of " << vec.size() << " elements: ";
     vector_println(vec);
 
-    auto double_fun = [](float v, long active_wait_ms = ACTIVE_WAIT_MS) {
+    auto double_fun = [](float v, std::chrono::milliseconds active_wait_ms = ACTIVE_WAIT_MS) {
         active_wait(active_wait_ms);
         return v*v;
     };
@@ -74,7 +77,7 @@ int main(int argc, char* argv[]) {
     }
 
     for (size_t i = 0; i < vec.size(); ++i) {
-        auto good_result = double_fun(vec[i], 0);
+        auto good_result = double_fun(vec[i], 0ms);
         if (i < res.size() && good_result != res[i])
             log_error("Error: the value in position ", i, " must be ", good_result, " but it is ", res[i]);
     }

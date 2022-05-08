@@ -1,4 +1,5 @@
 add_executable(
+        assignment2
         assignment2.cpp
         map.cpp
         map.h
